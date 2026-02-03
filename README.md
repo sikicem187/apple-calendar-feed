@@ -31,7 +31,7 @@ https://raw.githubusercontent.com/sikicem187/apple-calendar-feed/main/calendar.i
    - The file follows the iCalendar (RFC 5545) format.
    - Each event is a `VEVENT` block between `BEGIN:VEVENT` and `END:VEVENT`.
    - To remove an event: delete its entire `VEVENT` block.
-   - To add an event: create a new `VEVENT` block with proper `UID`, `DTSTART`, `DTEND`, `SUMMARY`, etc.
+   - To add an event: create a new `VEVENT` block (see **Adding Events** section below).
    - To modify an event: edit the fields within its `VEVENT` block.
 
 3. **Commit and push changes**:
@@ -46,6 +46,54 @@ https://raw.githubusercontent.com/sikicem187/apple-calendar-feed/main/calendar.i
 **Note:** Make sure your GitHub token has the `repo` scope for write access. If push fails with "Permission denied", update your token:
 ```bash
 gh auth refresh -h github.com -s repo
+```
+
+## Adding Events
+
+To add a new event to the calendar, insert a new `VEVENT` block before the final `END:VCALENDAR`. Here's a template:
+
+```ics
+BEGIN:VEVENT
+UID:unique-id-YEARMONTHDAY@openclaw
+DTSTAMP:YYYYMMDDTHHMMSSZ
+DTSTART:YYYYMMDDTHHMMSSZ
+DTEND:YYYYMMDDTHHMMSSZ
+SUMMARY:Event Title
+DESCRIPTION:Optional description
+LOCATION:Optional location
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+```
+
+**Fields explained:**
+- `UID`: Unique identifier (use format `event-name-YYYYMMDD@openclaw`)
+- `DTSTAMP`: Creation timestamp in UTC (format: `YYYYMMDDTHHMMSSZ`)
+- `DTSTART`: Event start time in UTC
+- `DTEND`: Event end time in UTC
+- `SUMMARY`: Event title (required)
+- `DESCRIPTION`: Optional details
+- `LOCATION`: Optional location
+
+**Example:**
+```ics
+BEGIN:VEVENT
+UID:meeting-20260205@openclaw
+DTSTAMP:20260203T191500Z
+DTSTART:20260205T140000Z
+DTEND:20260205T150000Z
+SUMMARY:Team Meeting
+DESCRIPTION:Weekly sync with development team
+LOCATION:Zoom
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
 ```
 
 ## Auto-update
