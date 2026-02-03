@@ -16,7 +16,7 @@ https://raw.githubusercontent.com/sikicem187/apple-calendar-feed/main/calendar.i
 ```
 
 ## Current Events
-- **Burgerking Arbeit**: Today 17:00-18:00 (MEZ)
+- **Burgerking Arbeit**: Today 18:00-00:30 (MEZ)
 
 *(Test entries removed on 2026-02-03)*
 
