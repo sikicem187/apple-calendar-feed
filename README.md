@@ -17,8 +17,36 @@ https://raw.githubusercontent.com/sikicem187/apple-calendar-feed/main/calendar.i
 
 ## Current Events
 - **Burgerking Arbeit**: Today 17:00-18:00 (MEZ)
-- **Test-Termin ohne Zeitzone**: Tomorrow 15:00-15:30
-- **Test-Eintrag morgen**: Tomorrow 15:00-15:30
+
+*(Test entries removed on 2026-02-03)*
+
+## How to edit this feed
+
+1. **Clone the repository** (or pull latest changes):
+   ```bash
+   git clone https://github.com/sikicem187/apple-calendar-feed.git
+   ```
+
+2. **Edit the `calendar.ics` file**:
+   - The file follows the iCalendar (RFC 5545) format.
+   - Each event is a `VEVENT` block between `BEGIN:VEVENT` and `END:VEVENT`.
+   - To remove an event: delete its entire `VEVENT` block.
+   - To add an event: create a new `VEVENT` block with proper `UID`, `DTSTART`, `DTEND`, `SUMMARY`, etc.
+   - To modify an event: edit the fields within its `VEVENT` block.
+
+3. **Commit and push changes**:
+   ```bash
+   git add calendar.ics
+   git commit -m "chore: Update calendar events"
+   git push origin main
+   ```
+
+4. **Apple Calendar will sync** automatically on its next refresh (based on your subscription frequency).
+
+**Note:** Make sure your GitHub token has the `repo` scope for write access. If push fails with "Permission denied", update your token:
+```bash
+gh auth refresh -h github.com -s repo
+```
 
 ## Auto-update
 This feed is automatically updated by OpenClaw/Spidey Kollege whenever new calendar events are created.
